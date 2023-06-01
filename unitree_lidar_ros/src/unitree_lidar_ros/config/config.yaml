@@ -1,0 +1,22 @@
+####################################################
+# lidar sdk configuration
+####################################################
+
+# Serial Port
+port: "/dev/ttyUSB0"          # default: "/dev/ttyUSB0"
+
+# Calibration
+rotate_yaw_bias: 0.0        # default: 0 in degree
+range_scale: 0.001     # default: 0.001 in meters
+range_bias: 0                 # default: 0 in meters
+range_max: 50                 # default: 50 in meters
+range_min: 0.0                # default: 0 in meters
+
+# PointCloud
+cloud_frame: "unilidar_lidar"  # default: "unilidar_lidar"
+cloud_topic: "unilidar/cloud"  # default: "unilidar/cloud"
+cloud_scan_num: 18           # default: 18
+
+# IMU
+imu_frame: "unilidar_imu"      # default: "unilidar_imu" 
+imu_topic: "unilidar/imu"      # default: "unilidar/imu"
