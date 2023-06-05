@@ -106,6 +106,15 @@ A Cloud msg is parsed!
 
 Here, we print the first 10 points of the pointcloud message and the quaternion of the IMU message.
 
+**Notice**:
+- In Ubuntu, accessing a serial port device requires the appropriate permissions. If your C++ program does not have sufficient permissions to access the serial port device, you will get a **"Permission denied"** error.
+- To solve this error, you can use the following command to add the current user to the dialout group:
+```
+sudo usermod -a -G dialout $USER
+```
+- After adding the user to the dialout group, you need to log out and log back in for the changes to take effect.
+
+
 ## Version History
 
 ### v1.0.0 (2023.05.04)
@@ -127,4 +136,5 @@ Here, we print the first 10 points of the pointcloud message and the quaternion 
 - Support firmware version: 1.0.1
 
 ### v1.0.5 (2023.06.05)
-- Update default rotate_yaw_bias to calibrated value -38.5 degree
+- Update default rotate_yaw_bias to calibrated value -38.5 degree.
+- Update `README.md` with notice to solve the "Permission denied" error while opening serial port.
