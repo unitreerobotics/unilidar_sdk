@@ -14,8 +14,3 @@ We provide three commonly used interfaces for our LiDAR:
 <div style="text-align:center">
   <img src="./docs/lidar.png" width="400">
 </div>
-
-## Version History
-
-### v1.0.0 (2023.05.31)
-- Support firmware version: `1.0.1`

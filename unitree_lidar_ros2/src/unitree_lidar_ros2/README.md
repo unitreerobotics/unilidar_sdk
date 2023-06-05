@@ -85,5 +85,5 @@ You can change the `Fixed Frame` to the imu frame `utlidar_imu`, so that you can
 
 ## Version History
 
-### v1.0.0 (2022.05.30)
+### v1.0.0 (2023.05.30)
 - support `unitree_lidar_sdk`: v1.0.4

@@ -125,3 +125,6 @@ Here, we print the first 10 points of the pointcloud message and the quaternion 
 
 ### v1.0.4 (2023.05.30)
 - Support firmware version: 1.0.1
+
+### v1.0.5 (2023.06.05)
+- Update default rotate_yaw_bias to calibrated value -38.5 degree
