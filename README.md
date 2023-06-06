@@ -1,7 +1,5 @@
 # unilidar sdk
 
-## Introduction
-
 This repository is a SDK for [Unitree L1 LiDAR](https://www.unitree.com/LiDAR).
 
 You can use the code interfaces in this repository to obtain point cloud data and IMU data measured in our lidar, as well as configure related parameters. 

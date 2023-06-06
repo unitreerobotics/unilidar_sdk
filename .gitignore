@@ -1,5 +1,3 @@
-install/
-
 unitree_lidar_ros/build
 unitree_lidar_ros/devel
 unitree_lidar_ros/.catkin_workspace

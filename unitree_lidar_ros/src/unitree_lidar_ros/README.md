@@ -77,7 +77,7 @@ In the Rviz window, you will see our lidar pointcloud like this:
 
 ![img](./docs/cloud.png)
 
-You can change the `Fixed Frame` to the imu frame `utlidar_imu`, so that you can view the IMU quaternion vector:
+You can change the `Fixed Frame` to the imu frame `unilidar_imu`, so that you can view the IMU quaternion vector:
 
 ![img](./docs/imu.png)
 
