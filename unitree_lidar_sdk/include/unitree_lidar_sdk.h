@@ -100,8 +100,10 @@ public:
 
   /**
    * @brief Initialize 
+   * @return Return 0 if the serial port is opened successfully; 
+   * return -1 if we failed to open the serial port.
    */
-  virtual void initialize( 
+  virtual int initialize( 
       uint16_t cloud_scan_num = 18,
       std::string port = "/dev/ttyUSB0", 
       uint32_t baudrate = 2000000,

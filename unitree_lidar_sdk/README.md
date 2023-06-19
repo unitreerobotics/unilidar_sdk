@@ -136,5 +136,12 @@ sudo usermod -a -G dialout $USER
 - Support firmware version: 1.0.1
 
 ### v1.0.5 (2023.06.05)
-- Update default rotate_yaw_bias to calibrated value -38.5 degree.
+- Support firmware version: 1.0.1
+- Update default `rotate_yaw_bias` to calibrated value `-38.5` degree.
 - Update `README.md` with notice to solve the "Permission denied" error while opening serial port.
+
+### v1.0.6 (2023.06.19)
+- Support firmware version: 1.0.1
+- Modify the `initialize()` function to check whether the specified serial port exist. 
+- If the serial port name does not exist, initialization fails and `return -1` rather than throw out an error unexpectedly。
+- Add z bias to lidar basis plane

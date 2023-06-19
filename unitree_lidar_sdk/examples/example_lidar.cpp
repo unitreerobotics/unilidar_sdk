@@ -8,8 +8,13 @@ using namespace unitree_lidar_sdk;
 
 int main(){
 
+  // Initialize Lidar Object
   UnitreeLidarReader* lreader = createUnitreeLidarReader();
-  lreader->initialize(5, "/dev/ttyUSB0");
+  int cloud_scan_num = 5;
+  std::string port_name = "/dev/ttyUSB0";
+  if ( lreader->initialize(cloud_scan_num, port_name) ){
+    exit(-1);
+  }
 
   // Print Lidar Version
   while(true){
