@@ -25,5 +25,5 @@ You can also go to our [official website](https://www.unitree.com/download) for 
 
 <div style="text-align:center">
   <img src="./docs/lidar_frame_definition.jpg" width="800">
-  <img src="./docs/lidar.png" width="300">
+  <img src="./docs/lidar.png" width="600">
 </div>
