@@ -45,8 +45,8 @@ The defalut cloud topic and its frame name is:
 - frame: "unilidar_lidar"
 
 The defalut IMU topic and its frame name is:
-- topic: "utlidar/imu"
-- frame: "utlidar_imu"
+- topic: "unilidar/imu"
+- frame: "unilidar_imu"
 
 ## Build
 
@@ -82,8 +82,3 @@ In the Rviz window, you will see our lidar pointcloud like this:
 ![img](./docs/cloud.png)
 
 You can change the `Fixed Frame` to the imu frame `unilidar_imu`, so that you can view the IMU quaternion vector.
-
-## Version History
-
-### v1.0.0 (2023.05.30)
-- support `unitree_lidar_sdk`: v1.0.4

@@ -142,6 +142,10 @@ sudo usermod -a -G dialout $USER
 
 ### v1.0.6 (2023.06.19)
 - Support firmware version: 1.0.1
-- Modify the `initialize()` function to check whether the specified serial port exist. 
-- If the serial port name does not exist, initialization fails and `return -1` rather than throw out an error unexpectedly。
+- Modify the `initialize()` function to check whether the specified serial port exist. If the serial port name does not exist, initialization fails and `return -1` rather than throw out an error unexpectedly。
 - Add z bias to lidar basis plane
+
+### v1.0.7 (2023.06.21)
+- Support firmware version: 1.0.1
+- Add coordinate system definition in readme
+- Modified readme of `unitree_lidar_ros` and `unitree_lidar_ros2`

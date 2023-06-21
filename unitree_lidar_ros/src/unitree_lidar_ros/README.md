@@ -47,8 +47,8 @@ The defalut cloud topic and its frame name is:
 - frame: "unilidar_lidar"
 
 The defalut IMU topic and its frame name is:
-- topic: "utlidar/imu"
-- frame: "utlidar_imu"
+- topic: "unilidar/imu"
+- frame: "unilidar_imu"
   
 ## Build
 You can just build this ROS package as follows:
@@ -80,17 +80,3 @@ In the Rviz window, you will see our lidar pointcloud like this:
 You can change the `Fixed Frame` to the imu frame `unilidar_imu`, so that you can view the IMU quaternion vector:
 
 ![img](./docs/imu.png)
-
-## Version History
-
-### v1.0.0 (2023.05.04)
-- support `unitree_lidar_sdk`: v1.0.0
-
-### v1.0.1 (2023.05.05)
-- support `unitree_lidar_sdk`: v1.0.1
-
-### v1.0.2 (2023.05.12)
-- support `unitree_lidar_sdk`: v1.0.3
-
-### v1.0.3 (2023.05.30)
-- support `unitree_lidar_sdk`: v1.0.4
