@@ -149,3 +149,8 @@ sudo usermod -a -G dialout $USER
 - Support firmware version: 1.0.1
 - Add coordinate system definition in readme
 - Modified readme of `unitree_lidar_ros` and `unitree_lidar_ros2`
+
+### v1.0.8 (2023.06.28)
+- Support firmware version: 1.0.1
+- Solve the dependency problem --- `cannot find -llz4`
+- Add mavlink headers for optional use

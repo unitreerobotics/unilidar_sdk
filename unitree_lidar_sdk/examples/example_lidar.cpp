@@ -74,7 +74,7 @@ int main(){
 
   printf("\n");
   sleep(2);
-
+  
   // Set Lidar Working Mode
   printf("Set Lidar working mode to: NORMAL_MODE ... \n");
   lreader->setLidarWorkingMode(NORMAL);
