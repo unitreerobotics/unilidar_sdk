@@ -17,3 +17,13 @@ add_executable(example_lidar
   examples/example_lidar.cpp
 )
 target_link_libraries(example_lidar  libunitree_lidar_sdk.a )
+
+add_executable(unilidar_publisher_udp
+  examples/unilidar_publisher_udp.cpp
+)
+target_link_libraries(unilidar_publisher_udp  libunitree_lidar_sdk.a )
+
+add_executable(unilidar_subscriber_udp
+  examples/unilidar_subscriber_udp.cpp
+)
+target_link_libraries(unilidar_subscriber_udp  libunitree_lidar_sdk.a )

@@ -4,6 +4,20 @@
 
 #pragma once
 
+#if defined(_WIN32) && !defined(__MINGW32__)
+  typedef signed char int8_t;
+  typedef unsigned char uint8_t;
+  typedef short int16_t;  // NOLINT
+  typedef unsigned short uint16_t;  // NOLINT
+  typedef int int32_t;
+  typedef unsigned int uint32_t;
+  typedef __int64 int64_t;
+  typedef unsigned __int64 uint64_t;
+  // intptr_t and friends are defined in crtdefs.h through stdio.h.
+#else
+  #include <stdint.h>
+#endif
+
 #include <iostream>
 #include <unistd.h>
 #include <deque>
@@ -11,10 +25,16 @@
 #include <memory>
 #include <math.h>
 
+#include "unitree_lidar_sdk_config.h"
+
 namespace unitree_lidar_sdk{
 
-const float DEGREE_TO_RADIAN = M_PI / 180.0;
-const float RADIAN_TO_DEGREE = 180.0 / M_PI;
+// const float DEGREE_TO_RADIAN = M_PI / 180.0;
+// const float RADIAN_TO_DEGREE = 180.0 / M_PI;
+
+const float PI_UNITEE = 3.14159265358979323846;
+const float DEGREE_TO_RADIAN = PI_UNITEE / 180.0;
+const float RADIAN_TO_DEGREE = 180.0 / PI_UNITEE;
 
 /**
  * @brief Get the system timestamp in seconds.
@@ -31,7 +51,7 @@ typedef struct
   float z;
   float intensity;
   float time;         // relative time of this point from cloud stamp
-  std::uint16_t ring; // ring
+  uint32_t ring;      // ring
 }PointUnitree;
 
 /**
@@ -39,17 +59,28 @@ typedef struct
  */
 typedef struct{
   double stamp;       // cloud timestamp
-  std::uint16_t id;   // sequence id
-  std::uint16_t ringNum;
+  uint32_t id;        // sequence id
+  uint32_t ringNum;
   std::vector<PointUnitree> points;  
 }PointCloudUnitree;
+
+/**
+ * @brief Scan Type
+ */
+typedef struct{
+  double stamp;       // cloud timestamp
+  uint32_t id;        // sequence id
+  uint32_t validPointsNum; // first validPointsNum points are valid
+  PointUnitree points[120];  
+}ScanUnitree;
+
 
 /**
  * @brief IMU Type
  */
 typedef struct{
   double stamp;                 // imu timestamp
-  std::uint16_t id;             // sequence id
+  uint32_t id;             // sequence id
   float quaternion[4];          // quaternion: [x,y,z,w]
   float angular_velocity[3];    // three-axis angular velocity values.
   float linear_acceleration[3]; // three-axis acceleration values.
@@ -73,8 +104,8 @@ enum MessageType{
  */
 enum LidarWorkingMode
 {
-  NORMAL=1,   /* Configure the LiDAR to operate in normal mode. | */
-  STANDBY=2  /* Configure the LiDAR to enter standby mode. | */
+  NORMAL=1,   // Configure the LiDAR to operate in normal mode.
+  STANDBY=2   // Configure the LiDAR to enter standby mode.
 };
 
 /**

@@ -154,3 +154,15 @@ sudo usermod -a -G dialout $USER
 - Support firmware version: 1.0.1
 - Solve the dependency problem --- `cannot find -llz4`
 - Add mavlink headers for optional use
+
+### v1.0.9 (2023.06.30)
+- Support firmware version: 1.0.1
+- Delete the date postfix of firmware version
+- Improve support of setting lidar working mode, which can switch between `NORMAL_MODE` and `STANDBY_MODE`
+
+### v1.0.10 (2023.07.17)
+- Support firmware version: 1.0.1
+- Add a UDP publisher written in C++, which can publish lidar data to a specified IP address and port
+- Add a UDP subscriber example written in C++, which is able to subscibe scan and imu data mentioned above
+- Add a UDP subscriber example written in Python, which is able to subscibe scan and imu data mentioned above
+- Add a compiled install package for Windows user, though which you can acquire lidar data in windows.

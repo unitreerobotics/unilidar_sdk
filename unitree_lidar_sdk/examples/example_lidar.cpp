@@ -10,11 +10,26 @@ int main(){
 
   // Initialize Lidar Object
   UnitreeLidarReader* lreader = createUnitreeLidarReader();
-  int cloud_scan_num = 5;
+  int cloud_scan_num = 18;
   std::string port_name = "/dev/ttyUSB0";
+
   if ( lreader->initialize(cloud_scan_num, port_name) ){
+    printf("Unilidar initialization failed! Exit here!\n");
     exit(-1);
+  }else{
+    printf("Unilidar initialization succeed!\n");
   }
+
+  // Set Lidar Working Mode
+  printf("Set Lidar working mode to: STANDBY ... \n");
+  lreader->setLidarWorkingMode(STANDBY);
+  sleep(1);
+
+  printf("Set Lidar working mode to: NORMAL ... \n");
+  lreader->setLidarWorkingMode(NORMAL);
+  sleep(1);
+
+  printf("\n");
 
   // Print Lidar Version
   while(true){
@@ -25,7 +40,7 @@ int main(){
     usleep(500);
   }
   printf("lidar sdk version = %s\n\n", lreader->getVersionOfSDK().c_str());
-  sleep(1);
+  sleep(2);
 
   // Check lidar dirty percentange
   int count_percentage = 0;
@@ -74,13 +89,6 @@ int main(){
 
   printf("\n");
   sleep(2);
-  
-  // Set Lidar Working Mode
-  printf("Set Lidar working mode to: NORMAL_MODE ... \n");
-  lreader->setLidarWorkingMode(NORMAL);
-
-  printf("\n");
-  sleep(2);
 
   // Parse PointCloud and IMU data
   MessageType result;
@@ -97,15 +105,16 @@ int main(){
     case IMU:
       printf("An IMU msg is parsed!\n");
       printf("\tstamp = %f, id = %d\n", lreader->getIMU().stamp, lreader->getIMU().id);
-      printf("\tquaternion (x, y, z, w) = [%.4f, %.4f, %.4f, %.4f]\n\n", 
+      printf("\tquaternion (x, y, z, w) = [%.4f, %.4f, %.4f, %.4f]\n", 
               lreader->getIMU().quaternion[0], lreader->getIMU().quaternion[1], 
               lreader->getIMU().quaternion[2], lreader->getIMU().quaternion[3]);
+      printf("\ttimedelay (us) = %d\n\n", lreader->getTimeDelay()); 
       break;
     
     case POINTCLOUD:
       printf("A Cloud msg is parsed! \n");
       printf("\tstamp = %f, id = %d\n", lreader->getCloud().stamp, lreader->getCloud().id);
-      printf("\tcloud size  = %ld\n", lreader->getCloud().points.size());
+      printf("\tcloud size  = %ld, ringNum = %d\n", lreader->getCloud().points.size(), lreader->getCloud().ringNum);
       printf("\tfirst 10 points (x,y,z,intensity,time,ring) = \n");
       for (int i = 0; i< 10; i++){ // print the first 10 points
         printf("\t  (%f, %f, %f, %f, %f, %d)\n", 
@@ -116,12 +125,14 @@ int main(){
             lreader->getCloud().points[i].time, 
             lreader->getCloud().points[i].ring);
       }
-      printf("\t  ...\n\n");
+      printf("\t  ...\n");
+      printf("\ttimedelay (us) = %d\n\n", lreader->getTimeDelay()); 
       break;
 
     default:
       break;
     }
+
     usleep(500);
   }
   
