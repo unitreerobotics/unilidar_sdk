@@ -115,6 +115,11 @@ sudo usermod -a -G dialout $USER
 - After adding the user to the dialout group, you need to log out and log back in for the changes to take effect.
 
 
+## How To Parse Point Cloud From MavLink Messages
+
+If you want to parse point cloud from MavLink Messages which are acquired from serial directly, you can refer to this document.
+- [HowToParsePointCloudAndIMUDataFromMavLinkMessages.md](./doc/HowToParsePointCloudAndIMUDataFromMavLinkMessages.md)
+
 ## Version History
 
 ### v1.0.0 (2023.05.04)
@@ -166,3 +171,7 @@ sudo usermod -a -G dialout $USER
 - Add a UDP subscriber example written in C++, which is able to subscibe scan and imu data mentioned above
 - Add a UDP subscriber example written in Python, which is able to subscibe scan and imu data mentioned above
 - Add a compiled install package for Windows user, though which you can acquire lidar data in windows.
+
+### v1.0.11 (2023.07.27)
+- Add a instruction document for how to parse point cloud and imu data from mavlink messages directly.
+- The document is `HowToParsePointCloudAndIMUDataFromMavLinkMessages.md`
