@@ -49,7 +49,6 @@ scanDataSize = struct.calcsize(scanDataStr)
 print("pointSize = " +str(pointSize) + ", scanDataSize = " + str(scanDataSize) + ", imuDataSize = " + str(imuDataSize))
 
 while True:
-    xxx = UDP_PORT
     # Recv data
     data, addr = sock.recvfrom(10000)
     print(f"Received data from {addr[0]}:{addr[1]}")

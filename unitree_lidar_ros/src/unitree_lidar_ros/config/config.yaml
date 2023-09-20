@@ -2,8 +2,17 @@
 # lidar sdk configuration
 ####################################################
 
+# Initialization Type
+initialize_type: 1 # 1-Serial, 2-UDP
+
 # Serial Port
 port: "/dev/ttyUSB0"          # default: "/dev/ttyUSB0"
+
+# UDP Port
+lidar_port: 6101
+lidar_ip: "10.10.10.10"
+local_port: 6201
+local_ip: "10.10.10.100" 
 
 # Calibration
 rotate_yaw_bias: 0            # default: 0 in degree
@@ -15,7 +24,7 @@ range_min: 0.0                # default: 0 in meters
 # PointCloud
 cloud_frame: "unilidar_lidar"  # default: "unilidar_lidar"
 cloud_topic: "unilidar/cloud"  # default: "unilidar/cloud"
-cloud_scan_num: 18             # default: 18
+cloud_scan_num: 2             # default: 18
 
 # IMU
 imu_frame: "unilidar_imu"      # default: "unilidar_imu" 

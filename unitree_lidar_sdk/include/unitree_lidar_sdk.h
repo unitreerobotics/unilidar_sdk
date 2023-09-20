@@ -146,6 +146,22 @@ public:
   ) = 0;
 
   /**
+   * @brief Initialize for UDP board
+   */
+  virtual int initializeUDP( 
+      uint16_t cloud_scan_num = 18,
+      unsigned short lidar_port = 5001,
+      std::string lidar_ip = "10.10.10.10",
+      unsigned short local_port = 5000, 
+      std::string local_ip = "10.10.10.100",
+      float rotate_yaw_bias = 0,
+      float range_scale = 0.001, 
+      float range_bias = 0,
+      float range_max = 50,
+      float range_min = 0
+  ) = 0;
+
+  /**
    * @brief Try to parse a message from the serial buffer once.
    * @note This is the main entrance of this class
    * @return 

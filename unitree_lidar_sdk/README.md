@@ -175,3 +175,8 @@ If you want to parse point cloud from MavLink Messages which are acquired from s
 ### v1.0.11 (2023.07.27)
 - Add a instruction document for how to parse point cloud and imu data from mavlink messages directly.
 - The document is `HowToParsePointCloudAndIMUDataFromMavLinkMessages.md`
+
+### v1.0.12 (2023.09.20)
+unitree_lidar_ros:
+- Add support of UDP interface, which can parse original bytes from a specified UDP port and send commands to lidar ip and port.
+- Update `unitree_lidar_ros`

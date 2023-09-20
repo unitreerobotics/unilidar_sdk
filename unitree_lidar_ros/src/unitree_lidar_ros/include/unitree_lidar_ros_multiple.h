@@ -58,7 +58,7 @@ inline sensor_msgs::PointCloud2 publishCloud(
 /**
  * @brief Unitree Lidar SDK Node
  */
-class UnitreeLidarSDKNode{
+class UnitreeLidarSDKNodeMultiple{
 protected:
 
   // ROS
@@ -69,6 +69,7 @@ protected:
 
   // Unitree Lidar Reader
   UnitreeLidarReader* lsdk_;
+  UnitreeLidarReader* lsdk2_;
 
   // Config params
   std::string port_; 
@@ -94,15 +95,16 @@ protected:
 
 public:
 
-  UnitreeLidarSDKNode(ros::NodeHandle nh){
+  UnitreeLidarSDKNodeMultiple(ros::NodeHandle nh){
     
     // Load config parameters
     nh.param("/unitree_lidar_ros_node/initialize_type", initialize_type_, 1);
 
     nh.param("/unitree_lidar_ros_node/port", port_, std::string("/dev/ttyUSB0"));
-
+    
     nh.param("/unitree_lidar_ros_node/lidar_port", lidar_port_, 6101);
     nh.param("/unitree_lidar_ros_node/lidar_ip", lidar_ip_, std::string("10.10.10.10"));
+
     nh.param("/unitree_lidar_ros_node/local_port", local_port_, 6201);
     nh.param("/unitree_lidar_ros_node/local_ip", local_ip_, std::string("10.10.10.100"));
 
@@ -120,6 +122,7 @@ public:
 
     // Initialize UnitreeLidarReader
     lsdk_ = createUnitreeLidarReader();
+    lsdk2_ = createUnitreeLidarReader();
 
     if (initialize_type_ == 1){
       lsdk_->initialize(cloud_scan_num_, port_, 2000000, rotate_yaw_bias_, 
@@ -128,10 +131,14 @@ public:
     else if (initialize_type_ == 2){
       lsdk_->initializeUDP(cloud_scan_num_, lidar_port_, lidar_ip_, local_port_, local_ip_, 
         rotate_yaw_bias_, range_scale_, range_bias_, range_max_, range_min_);
+      lsdk2_->initializeUDP(cloud_scan_num_, lidar_port_+1, lidar_ip_, local_port_+1, local_ip_, 
+        rotate_yaw_bias_, range_scale_, range_bias_, range_max_, range_min_);
     }
-    
 
     lsdk_->setLidarWorkingMode(NORMAL);
+    sleep(1);
+    lsdk2_->setLidarWorkingMode(NORMAL);
+    sleep(1);
 
     // ROS
     nh_ = nh;
@@ -139,7 +146,7 @@ public:
     pub_imu_ = nh.advertise<sensor_msgs::Imu> (imu_topic_, 1000);
   }
 
-  ~UnitreeLidarSDKNode(){
+  ~UnitreeLidarSDKNodeMultiple(){
   }
 
   /**
@@ -147,7 +154,7 @@ public:
    */
   bool run(){
     MessageType result = lsdk_->runParse();
-    pcl::PointCloud<PointType>::Ptr cloudOut( new pcl::PointCloud<PointType>() );
+     pcl::PointCloud<PointType>::Ptr cloudOut( new pcl::PointCloud<PointType>() );
 
     if (result == IMU){
       auto & imu = lsdk_->getIMU();
@@ -183,4 +190,44 @@ public:
     }
 
   }
+
+  bool run2(){
+    MessageType result = lsdk2_->runParse();
+    pcl::PointCloud<PointType>::Ptr cloudOut( new pcl::PointCloud<PointType>() );
+
+    if (result == IMU){
+      auto & imu = lsdk2_->getIMU();
+      sensor_msgs::Imu imuMsg;
+      imuMsg.header.frame_id = imu_frame_;
+      imuMsg.header.stamp = ros::Time::now().fromSec(imu.stamp);
+
+      imuMsg.orientation.x = imu.quaternion[0];
+      imuMsg.orientation.y = imu.quaternion[1];
+      imuMsg.orientation.z = imu.quaternion[2];
+      imuMsg.orientation.w = imu.quaternion[3];
+
+      imuMsg.angular_velocity.x = imu.angular_velocity[0];
+      imuMsg.angular_velocity.y = imu.angular_velocity[1];
+      imuMsg.angular_velocity.z = imu.angular_velocity[2];
+
+      imuMsg.linear_acceleration.x = imu.linear_acceleration[0];
+      imuMsg.linear_acceleration.y = imu.linear_acceleration[1];
+      imuMsg.linear_acceleration.z = imu.linear_acceleration[2];
+
+      pub_imu_.publish(imuMsg);
+  
+      return true;
+    }
+    else if (result == POINTCLOUD){
+      auto &cloud = lsdk2_->getCloud();
+      transformUnitreeCloudToPCL(cloud, cloudOut);
+      publishCloud(&pub_pointcloud_raw_, cloudOut, ros::Time::now().fromSec(cloud.stamp), cloud_frame_);
+      
+      return true;
+    }else{
+      return false;
+    }
+
+  }
+  
 };

@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
              imuMsg.quaternion[2], imuMsg.quaternion[3]);
       printf("\n");
     }
-    else if (msgType == 102)
+    else if (msgType == 102)  // 4+4+2896 bytes, which stands for [msgType, dataSize, data of ScanUnitree]
     {
       memcpy(&length, recv_buf + 4, 4);
       memcpy(&scanMsg, recv_buf + 8, sizeof(ScanUnitree));

@@ -1,0 +1,10 @@
+<launch>
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find unitree_lidar_ros)/rviz/view.rviz" />
+
+  <node pkg="unitree_lidar_ros" type="unitree_lidar_ros_multiple_node"  name="unitree_lidar_ros_multiple_node" respawn="true">
+    <rosparam command="load" file="$(find unitree_lidar_ros)/config/config.yaml"/>
+
+  </node>
+
+</launch>
