@@ -133,7 +133,7 @@ int main(){
       break;
     }
 
-    usleep(500);
+    // usleep(500);
   }
   
   return 0;

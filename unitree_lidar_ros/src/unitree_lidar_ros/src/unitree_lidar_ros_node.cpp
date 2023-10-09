@@ -13,13 +13,13 @@ int main(int argc, char **argv)
   ros::NodeHandle nh;
   
   UnitreeLidarSDKNode node(nh);
-  ros::Rate rate(2000);
+  // ros::Rate rate(2000);
   
   while (nh.ok())
   {
     ros::spinOnce();
     node.run();
-    rate.sleep();
+    // rate.sleep();
   }
 
   return 0;

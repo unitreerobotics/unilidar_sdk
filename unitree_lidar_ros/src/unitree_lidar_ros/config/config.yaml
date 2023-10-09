@@ -24,7 +24,7 @@ range_min: 0.0                # default: 0 in meters
 # PointCloud
 cloud_frame: "unilidar_lidar"  # default: "unilidar_lidar"
 cloud_topic: "unilidar/cloud"  # default: "unilidar/cloud"
-cloud_scan_num: 2             # default: 18
+cloud_scan_num: 18             # default: 18
 
 # IMU
 imu_frame: "unilidar_imu"      # default: "unilidar_imu" 

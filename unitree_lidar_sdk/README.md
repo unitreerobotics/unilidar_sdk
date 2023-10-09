@@ -177,6 +177,8 @@ If you want to parse point cloud from MavLink Messages which are acquired from s
 - The document is `HowToParsePointCloudAndIMUDataFromMavLinkMessages.md`
 
 ### v1.0.12 (2023.09.20)
-unitree_lidar_ros:
 - Add support of UDP interface, which can parse original bytes from a specified UDP port and send commands to lidar ip and port.
 - Update `unitree_lidar_ros`
+
+### v1.0.13 (2023.10.09)
+- Modify the serial port reading method in `unitree_lidar_sdk`. It will block when you call `runParse()` function, waiting for the serial port to have bytes and then reading the data once.
