@@ -182,3 +182,7 @@ If you want to parse point cloud from MavLink Messages which are acquired from s
 
 ### v1.0.13 (2023.10.09)
 - Modify the serial port reading method in `unitree_lidar_sdk`. It will block when you call `runParse()` function, waiting for the serial port to have bytes and then reading the data once.
+- Support Serial-to-UDP adapter board
+
+### v1.0.14 (2023.10.30)
+- Repair occasional segmentation fault when using serial-to-udp board.
