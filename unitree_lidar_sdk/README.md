@@ -186,3 +186,6 @@ If you want to parse point cloud from MavLink Messages which are acquired from s
 
 ### v1.0.14 (2023.10.30)
 - Repair occasional segmentation fault when using serial-to-udp board.
+
+### v1.0.15 (2024.01.04)
+- Modify default lidar and local ip address in `example_lidar_udp.cpp`

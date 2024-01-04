@@ -11,8 +11,8 @@ int main(int argc, char *argv[]){
   // Initialize Lidar Object
   UnitreeLidarReader* lreader = createUnitreeLidarReader();
   
-  std::string lidar_ip = "10.10.10.10";
-  std::string local_ip = "10.10.10.100";
+  std::string lidar_ip = "192.168.1.62";
+  std::string local_ip = "192.168.1.2";
   
   unsigned short lidar_port = 6101;
   unsigned short local_port = 6201;
