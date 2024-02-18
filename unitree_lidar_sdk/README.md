@@ -189,3 +189,7 @@ If you want to parse point cloud from MavLink Messages which are acquired from s
 
 ### v1.0.15 (2024.01.04)
 - Modify default lidar and local ip address in `example_lidar_udp.cpp`
+
+### v1.0.16 (2024.02.18)
+- Add a function to close UDP connection
+- Set the timeout to 1 second for `initializeUDP()`

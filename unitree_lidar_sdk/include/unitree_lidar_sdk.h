@@ -162,6 +162,11 @@ public:
   ) = 0;
 
   /**
+   * @brief Close UDP connection
+   */
+  virtual bool closeUDP() = 0;
+
+  /**
    * @brief Try to parse a message from the serial buffer once.
    * @note This is the main entrance of this class
    * @return 

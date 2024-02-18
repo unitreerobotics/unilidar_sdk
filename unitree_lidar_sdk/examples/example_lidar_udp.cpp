@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
   
   std::string lidar_ip = "192.168.1.62";
   std::string local_ip = "192.168.1.2";
-  
+
   unsigned short lidar_port = 6101;
   unsigned short local_port = 6201;
 
@@ -48,7 +48,9 @@ int main(int argc, char *argv[]){
 
   // Print Lidar Version
   while(true){
-    if (lreader->runParse() == VERSION){
+    MessageType msgType = lreader->runParse();
+    printf("msgType = %d\n", (int) msgType);
+    if (msgType == VERSION){
       printf("lidar firmware version = %s\n", lreader->getVersionOfFirmware().c_str() );
       break;
     }

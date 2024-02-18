@@ -33,8 +33,8 @@ public:
   int SetSendTimeout(int sec);
 
 private:
-  int usock = 0;
-  unsigned short uport = 0;
+  int sockfd_ = 0;
+  unsigned short udp_port_ = 0;
 };
 
 
